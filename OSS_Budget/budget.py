@@ -4,11 +4,13 @@ from expense import Expense
 class Budget:
     def __init__(self):
         self.expenses = []
+        self.category_list = set()
 
     def add_expense(self, category, description, amount):
         today = datetime.date.today().isoformat()
         expense = Expense(today, category, description, amount)
         self.expenses.append(expense)
+        self.category_list.add(category)
         print("지출이 추가되었습니다.\n")
 
     def list_expenses(self):
