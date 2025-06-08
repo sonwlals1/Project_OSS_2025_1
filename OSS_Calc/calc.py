@@ -7,6 +7,7 @@ class Calculator:
         self.root.title("계산기")
         self.root.geometry("300x400")
 
+        self.ans = ""
         self.expression = ""
 
         # 입력창
@@ -18,7 +19,7 @@ class Calculator:
             ['7', '8', '9', '/'],
             ['4', '5', '6', '*'],
             ['1', '2', '3', '-'],
-            ['0', '.', 'C', '+'],
+            ['0', '.', 'ans', 'C', '+'],
             ['=']
         ]
 
@@ -39,14 +40,14 @@ class Calculator:
             self.expression = ""
         elif char == '=':
             try:
-                self.expression = str(eval(self.expression))
+                self.ans = str(eval(self.expression))
+                self.expression = self.ans
             except Exception:
                 self.expression = "에러"
+        elif char == 'ans':
+            self.expression += self.ans
         else:
             self.expression += str(char)
 
         self.entry.delete(0, tk.END)
         self.entry.insert(tk.END, self.expression)
-
-
-
